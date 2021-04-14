@@ -131,21 +131,42 @@ extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
-        bottom=bar.Bar(
+        bottom = bar.Bar(
             [
+                widget.Spacer(
+                    length = 8
+                    ),
+                widget.Image(
+                    filename = '~/.config/qtile/icons/python-white.png',
+                    scale = 'False',
+                    padding = 10,
+                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('atom .')}
+                    ),
                 widget.CurrentLayout(
                     foreground = '#61a5ff',
                     ),
                 widget.Sep(),
+                widget.TextBox(
+                    text = ' ⌨️',
+                    padding = 0
+                    ),
                 widget.CPU(
                     foreground = '#c561ff'
                     ),
                 widget.Sep(),
+                widget.TextBox(
+                    text = ' 🖬',
+                    padding = 0,
+                ),
                 widget.Memory(
                     foreground = '#61ff8e',
-                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('dmenu_run')}
+                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(terminal + ' -e htop')},
                     ),
                 widget.Sep(),
+                widget.TextBox(
+                    text = ' 🪙',
+                    padding = 0
+                    ),
                 widget.BitcoinTicker(
                     foreground = 'ff5757',
                     currency = 'CAD'
@@ -159,19 +180,42 @@ screens = [
                     name_transform=lambda name: name.upper(),
                 ),
                 widget.TextBox(
+                    text = ' 💎',
+                    padding = 0
+                    ),
+                widget.TextBox(
                     foreground = '#ff5757',
-                    text = 'Cross the Rubicon'
+                    text = 'Cross the Rubicon',
+                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(terminal + ' -e cmatrix')},
                     ),
                 widget.Sep(),
+                widget.TextBox(
+                    text = ' ⟳',
+                    padding = 0
+                    ),
                 widget.CheckUpdates(
+                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(termihal)},
+                    color_no_updates = '57ffab',
                     colour_have_updates = '57ffab',
                     foreground = '#57ffab',
                     ),
                 widget.Sep(),
+                widget.TextBox(
+                    text = ' 🔊',
+                    padding = 0
+                    ),
+                widget.TextBox(
+                    text = 'Vol:',
+                    foreground = 'c561ff',
+                    ),
                 widget.Volume(
                     foreground = 'c561ff',
                     ),
                 widget.Sep(),
+                widget.TextBox(
+                    text = ' 🗓️',
+                    padding = 0
+                    ),
                 widget.Clock(
                     foreground = 'ffae57',
                     format = '%Y-%m-%d %a %I:%M %p'
@@ -183,21 +227,44 @@ screens = [
     ),
 
     Screen(
-        bottom=bar.Bar(
+        bottom = bar.Bar(
             [
+                widget.Spacer(
+                    length = 8
+                    ),
+                widget.Image(
+                    filename = '~/.config/qtile/icons/python-white.png',
+                    scale = 'False',
+                    padding = 10,
+                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('atom .')}
+                    ),
                 widget.CurrentLayout(
                     foreground = '#61a5ff',
                     ),
                 widget.Sep(),
+                widget.TextBox(
+                    text = ' ⌨️',
+                    padding = 0
+                    ),
                 widget.CPU(
                     foreground = '#c561ff'
                     ),
                 widget.Sep(),
+                widget.TextBox(
+                    text = ' 🖬',
+                    padding = 0,
+                ),
                 widget.Memory(
                     foreground = '#61ff8e',
+                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(terminal + ' -e htop')},
                     ),
                 widget.Sep(),
+                widget.TextBox(
+                    text = ' 🪙',
+                    padding = 0
+                    ),
                 widget.BitcoinTicker(
+                    max_chars = 3,
                     foreground = 'ff5757',
                     currency = 'CAD'
                     ),
@@ -209,21 +276,39 @@ screens = [
                     },
                     name_transform=lambda name: name.upper(),
                 ),
-                widget.Systray(),
-                widget.TextBox(
-                    foreground = '#ff5757',
-                    text = 'Cross the Rubicon'
-                    ),
                 widget.Sep(),
+                widget.TextBox(
+                    text = ' ⟳',
+                    padding = 0
+                    ),
                 widget.CheckUpdates(
+                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(termihal)},
+                    color_no_updates = '57ffab',
                     colour_have_updates = '57ffab',
                     foreground = '#57ffab',
                     ),
                 widget.Sep(),
+                widget.TextBox(
+                    text = ' 🔊',
+                    padding = 0
+                    ),
+                widget.TextBox(
+                    text = 'Vol:',
+                    foreground = 'c561ff',
+                    padding = 4
+                    ),
                 widget.Volume(
                     foreground = 'c561ff',
+                    padding = 2
+                    ),
+                widget.Spacer(
+                    length = 8
                     ),
                 widget.Sep(),
+                widget.TextBox(
+                    text = ' 🗓️',
+                    padding = 0
+                    ),
                 widget.Clock(
                     foreground = 'ffae57',
                     format = '%Y-%m-%d %a %I:%M %p'
