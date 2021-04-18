@@ -1,29 +1,11 @@
-# Copyright (c) 2010 Aldo Cortesi
-# Copyright (c) 2010, 2014 dequis
-# Copyright (c) 2012 Randall Ma
-# Copyright (c) 2012-2014 Tycho Andersen
-# Copyright (c) 2012 Craig Barnes
-# Copyright (c) 2013 horsik
-# Copyright (c) 2013 Tao Sauvage
-# Copyright (c) 2021 Alden Garcia (Not actually Copyrighted)
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in
-# all copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
+#     _    _     _               ____                _
+#    / \  | | __| | ___ _ __    / ___| __ _ _ __ ___(_) __ _
+#   / _ \ | |/ _` |/ _ \ '_ \  | |  _ / _` | '__/ __| |/ _` |
+#  / ___ \| | (_| |  __/ | | | | |_| | (_| | | | (__| | (_| |
+# /_/   \_\_|\__,_|\___|_| |_|  \____|\__,_|_|  \___|_|\__,_|
+
+# Dog goes crazy
+# https://www.youtube.com/watch?v=zCZEbnblMIE
 
 import os
 import re
@@ -41,56 +23,69 @@ from Xlib import X, display
 from Xlib.ext import randr
 from pprint import pprint
 
+# Variable Definitions
+alt = "mod1"
 mod = "mod4"
 terminal = guess_terminal()
 
 keys = [
     ### Frequently Used Lone Hotkeys
-    Key ([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
-    Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
-    Key([mod, "shift"], "q", lazy.window.kill(), desc="Kill focused window"),
+    Key ([alt], "Return", lazy.spawn(terminal), desc="Launch terminal"),
+    Key([alt], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
+    Key([alt, "shift"], "q", lazy.window.kill(), desc="Kill focused window"),
 
-    Key([mod, "shift"], "r", lazy.restart(), desc="Restart Qtile"),
-    Key([mod], "x", lazy.shutdown(), desc="Shutdown Qtile"),
+    Key([alt, "shift"], "r", lazy.restart(), desc="Restart Qtile"),
+    Key([alt], "x", lazy.shutdown(), desc="Shutdown Qtile"),
 
     # My Custom Keybindings
-    Key([mod, "shift"], "d", lazy.spawn("dmenu_run")),
+    Key([alt, "shift"], "d", lazy.spawn("dmenu_run")),
+    Key([alt], "f", lazy.window.toggle_fullscreen()),
+
+    # Custom Application Spawning
+    Key([mod, "shift"], "s", lazy.spawn("steam")),
+    Key([mod, "shift"], "n", lazy.spawn("nitrogen")),
+    Key([mod, "shift"], "d", lazy.spawn("discord")),
+
+    # Alt Subset
+    Key([alt, "shift"], "a", lazy.spawn("atom")),
+    Key([alt, "shift"], "b", lazy.spawn("brave")),
+    Key([alt, "shift"], "Return", lazy.spawn("nautilus")),
 
     # Window Shuffle
-    Key([mod, "shift"], "Left", lazy.layout.shuffle_left()),
-    Key([mod, "shift"], "Right", lazy.layout.shuffle_right()),
-    Key([mod, "shift"], "Down", lazy.layout.shuffle_down()),
-    Key([mod, "shift"], "Up", lazy.layout.shuffle_up()),
+    Key([alt, "shift"], "Left", lazy.layout.shuffle_left()),
+    Key([alt, "shift"], "Right", lazy.layout.shuffle_right()),
+    Key([alt, "shift"], "Down", lazy.layout.shuffle_down()),
+    Key([alt, "shift"], "Up", lazy.layout.shuffle_up()),
 
     ### Personally Redundant Hotkeys
-    Key([mod, "shift"], "Return", lazy.layout.toggle_split(),
+    Key([alt, "shift"], "t", lazy.layout.toggle_split(),
         desc="Toggle between split and unsplit sides of stack"),
 
-    Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    Key([alt], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 
     # Change Window Focus
-    Key([mod], "h", lazy.layout.left()),
-    Key([mod], "l", lazy.layout.right()),
-    Key([mod], "j", lazy.layout.down()),
-    Key([mod], "k", lazy.layout.up()),
-    Key([mod], "space", lazy.layout.next()),
+    Key([alt], "h", lazy.layout.left()),
+    Key([alt], "l", lazy.layout.right()),
+    Key([alt], "j", lazy.layout.down()),
+    Key([alt], "k", lazy.layout.up()),
+    Key([alt], "space", lazy.layout.next()),
 
     # Edit Window Size
-    Key([mod, "control"], "h", lazy.layout.grow_left()),
-    Key([mod, "control"], "l", lazy.layout.grow_right()),
-    Key([mod, "control"], "j", lazy.layout.grow_down()),
-    Key([mod, "control"], "k", lazy.layout.grow_up()),
-    Key([mod], "n", lazy.layout.normalize()),
+    Key([alt, "control"], "h", lazy.layout.grow_left()),
+    Key([alt, "control"], "l", lazy.layout.grow_right()),
+    Key([alt, "control"], "j", lazy.layout.grow_down()),
+    Key([alt, "control"], "k", lazy.layout.grow_up()),
+    Key([alt], "n", lazy.layout.normalize()),
 ]
 
 groups = [Group(i) for i in "123456789"]
 
 for i in groups:
     keys.extend([
-        Key([mod], i.name, lazy.group[i.name].toscreen(),
+        Key([alt], i.name, lazy.group[i.name].toscreen(),
             desc="Switch to group {}".format(i.name)),
 
-        Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True),
+        Key([alt, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True),
             desc="Switch to & move focused window to group {}".format(i.name)),
     ])
 
@@ -104,7 +99,7 @@ layouts = [
     ),
 
     layout.MonadTall(
-        margin = 6,
+        margin = 8,
         border_width = 2,
         border_focus = '#c561ff',
         border_normal = '#1D2330'
@@ -171,7 +166,14 @@ screens = [
                     foreground = 'ff5757',
                     currency = 'CAD'
                     ),
-                widget.Spacer(),
+                widget.Sep(),
+                widget.TextBox(
+                    text = ' 🖇️',
+                    padding = 0
+                    ),
+                widget.WindowName(
+                    foreground = 'ffae57',
+                ),
                 widget.Prompt(),
                 widget.Chord(
                     chords_colors={
@@ -188,17 +190,16 @@ screens = [
                     text = 'Cross the Rubicon',
                     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(terminal + ' -e cmatrix')},
                     ),
-                widget.Sep(),
-                widget.TextBox(
-                    text = ' ⟳',
-                    padding = 0
-                    ),
-                widget.CheckUpdates(
-                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(termihal)},
-                    color_no_updates = '57ffab',
-                    colour_have_updates = '57ffab',
-                    foreground = '#57ffab',
-                    ),
+                # widget.Sep(),
+                # widget.TextBox(
+                #     text = ' ⟳',
+                #     padding = 0
+                #     ),
+                # widget.CheckUpdates(
+                #     color_no_updates = '57ffab',
+                #     colour_have_updates = '57ffab',
+                #     foreground = '#57ffab',
+                #     ),
                 widget.Sep(),
                 widget.TextBox(
                     text = ' 🔊',
@@ -258,16 +259,6 @@ screens = [
                     foreground = '#61ff8e',
                     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(terminal + ' -e htop')},
                     ),
-                widget.Sep(),
-                widget.TextBox(
-                    text = ' 🪙',
-                    padding = 0
-                    ),
-                widget.BitcoinTicker(
-                    max_chars = 3,
-                    foreground = 'ff5757',
-                    currency = 'CAD'
-                    ),
                 widget.Spacer(),
                 widget.Prompt(),
                 widget.Chord(
@@ -276,21 +267,19 @@ screens = [
                     },
                     name_transform=lambda name: name.upper(),
                 ),
-                widget.Sep(),
-                widget.TextBox(
-                    text = ' ⟳',
-                    padding = 0
-                    ),
-                widget.CheckUpdates(
-                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(termihal)},
-                    color_no_updates = '57ffab',
-                    colour_have_updates = '57ffab',
-                    foreground = '#57ffab',
-                    ),
-                widget.Sep(),
+                # widget.TextBox(
+                #     text = ' ⟳',
+                #     padding = 0
+                #     ),
+                # widget.CheckUpdates(
+                #     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(terminal)},
+                #     color_no_updates = '57ffab',
+                #     colour_have_updates = '57ffab',
+                #     foreground = '#57ffab',
+                #     ),
                 widget.TextBox(
                     text = ' 🔊',
-                    padding = 0
+                    padding = 4
                     ),
                 widget.TextBox(
                     text = 'Vol:',
@@ -299,8 +288,19 @@ screens = [
                     ),
                 widget.Volume(
                     foreground = 'c561ff',
-                    padding = 2
+                    padding = 4
                     ),
+                widget.Sep(
+                    padding = 10
+                ),
+                widget.TextBox(
+                    text = 'Active:',
+                    foreground = 'ff5757',
+                    padding = 4
+                    ),
+                widget.Systray(
+                    padding = 6,
+                ),
                 widget.Spacer(
                     length = 8
                     ),
@@ -322,11 +322,11 @@ screens = [
 
 # Drag floating layouts.
 mouse = [
-    Drag([mod], "Button1", lazy.window.set_position_floating(),
+    Drag([alt], "Button1", lazy.window.set_position_floating(),
          start=lazy.window.get_position()),
-    Drag([mod], "Button3", lazy.window.set_size_floating(),
+    Drag([alt], "Button3", lazy.window.set_size_floating(),
          start=lazy.window.get_size()),
-    Click([mod], "Button2", lazy.window.bring_to_front())
+    Click([alt], "Button2", lazy.window.bring_to_front())
 ]
 
 dgroups_key_binder = None
