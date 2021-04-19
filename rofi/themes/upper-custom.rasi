@@ -1,0 +1,44 @@
+/**
+ * ROFI Color theme
+ * User: Alden Garcia
+ */
+* {
+    background-color:      #282a36;
+    text-color:           White;
+    font:            "Ubuntu Mono 12";
+}
+
+prompt {
+    enabled: false;
+}
+
+window {
+    anchor:     north;
+    location:   north;
+    width:      44%;
+    padding:    14px;
+    children:   [ horibox ];
+}
+
+horibox {
+    orientation: horizontal;
+    children:   [ prompt, entry, listview ];
+}
+
+listview {
+    layout:     horizontal;
+    spacing:    8px;
+    lines:      10;
+}
+
+entry {
+    expand:     false;
+    width:      10em;
+}
+
+element {
+    padding: 0px 2px;
+}
+element selected {
+    background-color: #c561ff;
+}
