@@ -125,6 +125,8 @@ extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
+        wallpaper = '~/Pictures/Wallpapers/generic/forest1.jpg',
+        wallpaper_mode = 'fill',
         bottom = bar.Bar(
             [
                 widget.Spacer(
@@ -227,6 +229,8 @@ screens = [
     ),
 
     Screen(
+        wallpaper = '~/Pictures/Wallpapers/generic/forest1.jpg',
+        wallpaper_mode = 'stretch',
         bottom = bar.Bar(
             [
                 widget.Spacer(
