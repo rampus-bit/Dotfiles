@@ -33,23 +33,22 @@ keys = [
     Key ([alt], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([alt], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([alt, "shift"], "q", lazy.window.kill(), desc="Kill focused window"),
-
     Key([alt, "shift"], "r", lazy.restart(), desc="Restart Qtile"),
     Key([alt], "x", lazy.shutdown(), desc="Shutdown Qtile"),
 
     # My Custom Keybindings
-    Key([alt, "shift"], "d", lazy.spawn("dmenu_run")),
+    Key([alt, "shift"], "d", lazy.spawn("rofi -show run")),
     Key([alt], "f", lazy.window.toggle_fullscreen()),
 
     # Custom Application Spawning
-    Key([mod, "shift"], "s", lazy.spawn("steam")),
-    Key([mod, "shift"], "n", lazy.spawn("nitrogen")),
-    Key([mod, "shift"], "d", lazy.spawn("discord")),
-
-    # Alt Subset
+    Key([alt, "shift"], "s", lazy.spawn("steam")),
+    Key([alt, "shift"], "n", lazy.spawn("nitrogen")),
     Key([alt, "shift"], "a", lazy.spawn("atom")),
     Key([alt, "shift"], "b", lazy.spawn("brave")),
     Key([alt, "shift"], "Return", lazy.spawn("nautilus")),
+
+    # Mod Subset
+    Key([mod, "shift"], "d", lazy.spawn("discord")),
 
     # Window Shuffle
     Key([alt, "shift"], "Left", lazy.layout.shuffle_left()),
