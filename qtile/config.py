@@ -98,10 +98,11 @@ layouts = [
     ),
 
     layout.MonadTall(
-        margin = 8,
+        margin = 6,
         border_width = 2,
         border_focus = '#c561ff',
-        border_normal = '#1D2330'
+        border_normal = '#1D2330',
+        ratio = 0.5
     ),
 
     layout.Bsp(
@@ -229,10 +230,8 @@ screens = [
     ),
 
     Screen(
-        #xrandr --output HDMI-A-0 --rotate left
         wallpaper = '~/Pictures/Wallpapers/generic/forest1.jpg',
         wallpaper_mode = 'stretch',
-        #screen_change = 'xrandr --output HDMI-A-0 --rotate left',
         bottom = bar.Bar(
             [
                 widget.Spacer(
