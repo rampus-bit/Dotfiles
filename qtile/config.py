@@ -229,8 +229,10 @@ screens = [
     ),
 
     Screen(
+        #xrandr --output HDMI-A-0 --rotate left
         wallpaper = '~/Pictures/Wallpapers/generic/forest1.jpg',
         wallpaper_mode = 'stretch',
+        #screen_change = 'xrandr --output HDMI-A-0 --rotate left',
         bottom = bar.Bar(
             [
                 widget.Spacer(
