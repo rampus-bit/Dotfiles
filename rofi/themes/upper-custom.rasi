@@ -2,10 +2,11 @@
  * ROFI Color theme
  * User: Alden Garcia / Rampus-Bit
  */
+
 * {
-    background-color:      #282a36;
+    background-color:     #282a36;
     text-color:           White;
-    font:            "Ubuntu Mono 12";
+    font:                 "Ubuntu Mono 12";
 }
 
 prompt {
