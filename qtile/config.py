@@ -89,6 +89,10 @@ for i in groups:
     ])
 
 layouts = [
+    layout.Floating(
+        border_focus = '#c561ff',
+        border_normal = '#c561ff',
+    ),
     layout.Columns(
         margin = 4,
         border_width = 2,
@@ -195,7 +199,7 @@ screens = [
                 # widget.Sep(),
                 # widget.TextBox(
                 #     text = ' ⟳',
-                #     padding = 0
+                #     padding = 0,
                 #     ),
                 # widget.CheckUpdates(
                 #     color_no_updates = '57ffab',
@@ -276,7 +280,7 @@ screens = [
                 #     padding = 0
                 #     ),
                 # widget.CheckUpdates(
-                #     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(terminal)},
+                #     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(terminal + ' -e sudo pacman -Syyu')},
                 #     color_no_updates = '57ffab',
                 #     colour_have_updates = '57ffab',
                 #     foreground = '#57ffab',
