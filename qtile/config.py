@@ -89,10 +89,6 @@ for i in groups:
     ])
 
 layouts = [
-    layout.Floating(
-        border_focus = '#c561ff',
-        border_normal = '#c561ff',
-    ),
     layout.Columns(
         margin = 4,
         border_width = 2,

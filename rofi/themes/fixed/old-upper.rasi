@@ -4,7 +4,7 @@
  */
 
 * {
-    background-color:     #282a36;
+    background-color:     #282a36
     text-color:           rgba ( 219, 223, 188, 100 % );
     separatorcolor:       rgba ( 219, 223, 188, 100 % );
     font:                 "Ubuntu Mono 12";
