@@ -1,5 +1,4 @@
-[options]
-#https://github.com/thestinger/termite/blob/master/config
+[Options]
 allow_bold = true
 audible_bell = false
 browser = xdg-open
@@ -22,7 +21,7 @@ size_hints = false
 search_wrap = true
 urgent_on_bell = true
 
-[hints]
+[Other Attributes]
 #font = Monospace 12
 #foreground = #dcdccc
 #background = #3f3f3f
@@ -33,19 +32,7 @@ urgent_on_bell = true
 #border_width = 10
 #roundness = 2.0
 
-############################################################
-#### You can change the color coding to your liking
-#### There is a folder themes in ~/config/termite/themes
-#### Copy/paste the colors from one of the 79+ templates to this one
-#### A backup of the original config termite is present
-############################################################
-#### Use websites to make the terminal your own
-#### https://terminal.sexy
-#### https://critical.ch/xterm/
-############################################################
-
-[colors]
-# https://critical.ch/xterm/
+[Theme]
 #dracula theme adapted by Erik Dubois
 background = rgba(40, 42, 54, 0.8)
 
@@ -53,7 +40,7 @@ background = rgba(40, 42, 54, 0.8)
 foreground      = #f8f8f2
 foreground_bold = #f8f8f2
 cursor          = #f8f8f2
-#background      = #282a36
+#background     = #282a36
 
 # black
 color0  = #000000
