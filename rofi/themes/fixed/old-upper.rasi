@@ -3,16 +3,7 @@
  * User: Alden Garcia / Rampus-Bit
  */
 
-* {
-    background-color:     #282a36
-    text-color:           rgba ( 219, 223, 188, 100 % );
-    separatorcolor:       rgba ( 219, 223, 188, 100 % );
-    font:                 "Ubuntu Mono 12";
-}
-
-prompt {
-    enabled: false;
-}
+@import "styles/old-colors.rasi"
 
 window {
     anchor:     north;
@@ -22,6 +13,10 @@ window {
     padding:    14px;
     children:   [ horibox ];
     border-color: @separatorcolor;
+}
+
+prompt {
+    enabled: false;
 }
 
 horibox {

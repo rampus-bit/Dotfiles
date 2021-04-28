@@ -3,15 +3,7 @@
  * User: Alden Garcia / Rampus-Bit
  */
 
-* {
-    background-color:     #282a36;
-    text-color:           White;
-    font:                 "Ubuntu Mono 12";
-}
-
-prompt {
-    enabled: false;
-}
+@import "styles/kitty-colors.rasi"
 
 window {
     anchor:     north;
@@ -19,6 +11,10 @@ window {
     width:      44%;
     padding:    14px;
     children:   [ horibox ];
+}
+
+prompt {
+    enabled: false;
 }
 
 horibox {
@@ -41,5 +37,5 @@ element {
     padding: 0px 2px;
 }
 element selected {
-    background-color: #c561ff;
+    background-color: @highlighted-color;
 }

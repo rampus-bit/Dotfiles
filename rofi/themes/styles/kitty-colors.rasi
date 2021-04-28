@@ -1,1 +1,6 @@
-Placeholder
+* {
+    highlighted-color:    #c561ff;
+    background-color:     #282a36ff;
+    text-color:           White;
+    font:                 "Ubuntu Mono 12";
+}
