@@ -12,7 +12,7 @@ window {
     border:     1;
     padding:    14px;
     children:   [ horibox ];
-    border-color: @separatorcolor;
+    border-color: @text-color;
 }
 
 prompt {
@@ -39,6 +39,6 @@ element {
     padding: 0px 2px;
 }
 element selected {
-    background-color: rgba ( 219, 223, 188, 100 % );
-    text-color:       #282a36;
+    background-color: @text-color;
+    text-color:       @background-color;
 }
