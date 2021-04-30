@@ -34,10 +34,11 @@ keys = [
     Key([alt], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([alt, "shift"], "q", lazy.window.kill(), desc="Kill focused window"),
     Key([alt, "shift"], "r", lazy.restart(), desc="Restart Qtile"),
-    Key([alt], "x", lazy.shutdown(), desc="Shutdown Qtile"),
+    # Key([alt], "x", lazy.shutdown(), desc="Shutdown Qtile"),
 
     # My Custom Keybindings
     Key([alt, "shift"], "d", lazy.spawn("rofi -show run")),
+    Key([alt], "x", lazy.spawn("dmenu-power-menu")),
     Key([alt], "f", lazy.window.toggle_fullscreen()),
 
     # Custom Application Spawning
