@@ -1,0 +1,12 @@
+* {
+    foreground:           #C4C7C5;
+    background:           #212B30;
+    highlighted-color:    #c561ff;
+    background-color:     #212B30;
+    border-color:         @separatorcolor;
+    text-color:           White;
+    font:                 "Ubuntu Mono 12";
+    spacing:              2;
+    separatorcolor:       rgba ( 219, 223, 188, 100 % );
+    transparent:        #00000000;
+}
