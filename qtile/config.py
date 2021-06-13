@@ -1,44 +1,26 @@
-#     _    _     _               ____                _
-#    / \  | | __| | ___ _ __    / ___| __ _ _ __ ___(_) __ _
-#   / _ \ | |/ _` |/ _ \ '_ \  | |  _ / _` | '__/ __| |/ _` |
-#  / ___ \| | (_| |  __/ | | | | |_| | (_| | | | (__| | (_| |
-# /_/   \_\_|\__,_|\___|_| |_|  \____|\__,_|_|  \___|_|\__,_|
 
-# Dog goes crazy
-# https://www.youtube.com/watch?v=zCZEbnblMIE
-
-import os
-import re
-import socket
-import subprocess
 
 from typing import List  # noqa: F401
-from libqtile import bar, layout, widget, hook
-from libqtile.config import Click, Drag, Group, KeyChord, Key, Match, Screen
+
+from libqtile import bar, layout, widget
+from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
-from libqtile import qtile
 
-from Xlib import X, display
-from Xlib.ext import randr
-from pprint import pprint
-
-# Variable Definitions
 alt = "mod1"
 mod = "mod4"
 terminal = guess_terminal()
 
 keys = [
     ### Frequently Used Lone Hotkeys
-    Key ([alt], "Return", lazy.spawn(terminal), desc="Launch terminal"),
+    Key([alt], "Return", lazy.spawn("kitty"), desc="Launch terminal"),
     Key([alt], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([alt, "shift"], "q", lazy.window.kill(), desc="Kill focused window"),
     Key([alt, "shift"], "r", lazy.restart(), desc="Restart Qtile"),
-    # Key([alt], "x", lazy.shutdown(), desc="Shutdown Qtile"),
 
-    # My Custom Keybindings
+    # My Custom Bindings
     Key([alt, "shift"], "d", lazy.spawn("rofi -show run")),
-    Key([alt], "x", lazy.spawn("dmenu-power-menu")),
+    Key([alt], "x", lazy.spawn("arcolinux-logout")),
     Key([alt], "f", lazy.window.toggle_fullscreen()),
 
     # Custom Application Spawning
@@ -82,11 +64,17 @@ groups = [Group(i) for i in "123456789"]
 
 for i in groups:
     keys.extend([
+        # mod1 + letter of group = switch to group
         Key([alt], i.name, lazy.group[i.name].toscreen(),
             desc="Switch to group {}".format(i.name)),
 
+        # mod1 + shift + letter of group = switch to & move focused window to group
         Key([alt, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True),
             desc="Switch to & move focused window to group {}".format(i.name)),
+        # Or, use below if you prefer not to switch to that group.
+        # # mod1 + shift + letter of group = move focused window to group
+        # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
+        #     desc="move focused window to group {}".format(i.name)),
     ])
 
 layouts = [
@@ -123,23 +111,21 @@ widget_defaults = dict(
 
 extension_defaults = widget_defaults.copy()
 
-# xrandr --output HDMI-A-O --rotate left
-
 screens = [
     Screen(
-        wallpaper = '~/Pictures/Wallpapers/generic/forest1.jpg',
+        wallpaper = '~/Pictures/Wallpapers/Personal/Tokyo.png',
         wallpaper_mode = 'fill',
         bottom = bar.Bar(
             [
                 widget.Spacer(
                     length = 8
                     ),
-                widget.Image(
-                    filename = '~/.config/qtile/icons/python-white.png',
-                    scale = 'False',
-                    padding = 10,
-                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('atom .')}
-                    ),
+                # widget.Image(
+                #     filename = '~/.config/qtile/icons/python-white.png',
+                #     scale = 'False',
+                #     padding = 10,
+                #     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('atom .')}
+                #     ),
                 widget.CurrentLayout(
                     foreground = '#61a5ff',
                     ),
@@ -165,10 +151,10 @@ screens = [
                     text = ' 🪙',
                     padding = 0
                     ),
-                widget.BitcoinTicker(
-                    foreground = 'ff5757',
-                    currency = 'CAD'
-                    ),
+                # widget.BitcoinTicker(
+                #     foreground = 'ff5757',
+                #     currency = 'CAD'
+                #     ),
                 widget.Sep(),
                 widget.TextBox(
                     text = ' 🖇️',
@@ -231,19 +217,19 @@ screens = [
     ),
 
     Screen(
-        wallpaper = '~/Pictures/Wallpapers/generic/forest1.jpg',
-        wallpaper_mode = 'stretch',
+        wallpaper = '~/Pictures/Wallpapers/Personal/Tokyo.png',
+        wallpaper_mode = 'fill',
         bottom = bar.Bar(
             [
                 widget.Spacer(
                     length = 8
                     ),
-                widget.Image(
-                    filename = '~/.config/qtile/icons/python-white.png',
-                    scale = 'False',
-                    padding = 10,
-                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('atom .')}
-                    ),
+                # widget.Image(
+                #     filename = '~/.config/qtile/icons/python-white.png',
+                #     scale = 'False',
+                #     padding = 10,
+                #     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('atom .')}
+                #     ),
                 widget.CurrentLayout(
                     foreground = '#61a5ff',
                     ),
@@ -272,16 +258,6 @@ screens = [
                     },
                     name_transform=lambda name: name.upper(),
                 ),
-                # widget.TextBox(
-                #     text = ' ⟳',
-                #     padding = 0
-                #     ),
-                # widget.CheckUpdates(
-                #     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(terminal + ' -e sudo pacman -Syyu')},
-                #     color_no_updates = '57ffab',
-                #     colour_have_updates = '57ffab',
-                #     foreground = '#57ffab',
-                #     ),
                 widget.TextBox(
                     text = ' 🔊',
                     padding = 4
@@ -335,25 +311,28 @@ mouse = [
 ]
 
 dgroups_key_binder = None
-dgroups_app_rules = []
-main = None
+dgroups_app_rules = []  # type: List
 follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
 floating_layout = layout.Floating(float_rules=[
-
+    # Run the utility of `xprop` to see the wm class and name of an X client.
     *layout.Floating.default_float_rules,
-    Match(wm_class='confirmreset'),
-    Match(wm_class='makebranch'),
-    Match(wm_class='maketag'),
-    Match(wm_class='ssh-askpass'),
-    Match(title='branchdialog'),
-    Match(title='pinentry'),
+    Match(wm_class='confirmreset'),  # gitk
+    Match(wm_class='makebranch'),  # gitk
+    Match(wm_class='maketag'),  # gitk
+    Match(wm_class='ssh-askpass'),  # ssh-askpass
+    Match(title='branchdialog'),  # gitk
+    Match(title='pinentry'),  # GPG key password entry
 ])
 auto_fullscreen = True
 focus_on_window_activation = "smart"
+reconfigure_screens = True
 
-### Funny Comment
+# If things like steam games want to auto-minimize themselves when losing
+# focus, should we respect this or not?
+auto_minimize = True
+
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
 # mailing lists, GitHub issues, and other WM documentation that suggest setting
