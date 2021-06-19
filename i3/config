@@ -21,18 +21,14 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
-exec --no-startup-id compton -b -f
-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# start a terminal
+# General Bindings:
 bindsym $mod+Return exec kitty
 
-# Start a file manager
 bindsym $mod+Shift+Return exec nautilus
 
-# kill focused window
 bindsym $mod+Shift+q kill
 
 exec_always --no-startup-id $HOME/.config/polybar/forest/launch.sh

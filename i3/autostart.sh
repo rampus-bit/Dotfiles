@@ -8,3 +8,7 @@ function run {
 }
 
 picom --config $HOME/.config/bspwm/picom.conf &
+
+run discord &
+run spotify &
+run steam &
