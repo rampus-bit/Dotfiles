@@ -1,11 +1,11 @@
+import os
+import subprocess
+
 from typing import List  # noqa: F401
-from libqtile import hook
-from libqtile import bar, layout, widget
+from libqtile import bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
-import os
-import subprocess
 
 alt = "mod1"
 mod = "mod4"
@@ -110,111 +110,6 @@ widget_defaults = dict(
 )
 
 extension_defaults = widget_defaults.copy()
-
-screens = [
-    Screen(
-        wallpaper = '~/Pictures/Wallpapers/Personal/Tokyo.png',
-        wallpaper_mode = 'fill',
-        bottom = bar.Bar(
-            [
-                widget.Spacer(
-                    length = 8
-                    ),
-                # widget.Image(
-                #     filename = '~/.config/qtile/icons/python-white.png',
-                #     scale = 'False',
-                #     padding = 10,
-                #     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn('atom .')}
-                #     ),
-                widget.CurrentLayout(
-                    foreground = '#61a5ff',
-                    ),
-                widget.Sep(),
-                widget.TextBox(
-                    text = ' ⌨️',
-                    padding = 0
-                    ),
-                widget.CPU(
-                    foreground = '#c561ff'
-                    ),
-                widget.Sep(),
-                widget.TextBox(
-                    text = ' 🖬',
-                    padding = 0,
-                ),
-                widget.Memory(
-                    foreground = '#61ff8e',
-                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(terminal + ' -e htop')},
-                    ),
-                widget.Sep(),
-                widget.TextBox(
-                    text = ' 🪙',
-                    padding = 0
-                    ),
-                # widget.BitcoinTicker(
-                #     foreground = 'ff5757',
-                #     currency = 'CAD'
-                #     ),
-                widget.Sep(),
-                widget.TextBox(
-                    text = ' 🖇️',
-                    padding = 0
-                    ),
-                widget.WindowName(
-                    foreground = 'ffae57',
-                ),
-                widget.Prompt(),
-                widget.Chord(
-                    chords_colors={
-                        'launch': ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
-                widget.TextBox(
-                    text = ' 💎',
-                    padding = 0
-                    ),
-                widget.TextBox(
-                    foreground = '#ff5757',
-                    text = 'Cross the Rubicon',
-                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(terminal + ' -e cmatrix')},
-                    ),
-                # widget.Sep(),
-                # widget.TextBox(
-                #     text = ' ⟳',
-                #     padding = 0,
-                #     ),
-                # widget.CheckUpdates(
-                #     color_no_updates = '57ffab',
-                #     colour_have_updates = '57ffab',
-                #     foreground = '#57ffab',
-                #     ),
-                widget.Sep(),
-                widget.TextBox(
-                    text = ' 🔊',
-                    padding = 0
-                    ),
-                widget.TextBox(
-                    text = 'Vol:',
-                    foreground = 'c561ff',
-                    ),
-                widget.Volume(
-                    foreground = 'c561ff',
-                    ),
-                widget.Sep(),
-                widget.TextBox(
-                    text = ' 🗓️',
-                    padding = 0
-                    ),
-                widget.Clock(
-                    foreground = 'ffae57',
-                    format = '%Y-%m-%d %a %I:%M %p'
-                    ),
-            ],
-            24,
-            background="#282a36"
-        ),
-    ),
 
     Screen(
         wallpaper = '~/Pictures/Wallpapers/Personal/Tokyo.png',
@@ -329,8 +224,6 @@ auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True
 
-# If things like steam games want to auto-minimize themselves when losing
-# focus, should we respect this or not?
 auto_minimize = True
 
 @hook.subscribe.startup_once
@@ -338,12 +231,4 @@ def autostart():
     home = os.path.expanduser('~/.config/qtile/autostart.sh')
     subprocess.call([home])
 
-# XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
-# string besides java UI toolkits; you can see several discussions on the
-# mailing lists, GitHub issues, and other WM documentation that suggest setting
-# this string if your java app doesn't work correctly. We may as well just lie
-# and say that we're a working one by default.
-#
-# We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
-# java that happens to be on java's whitelist.
 wmname = "LG3D"
