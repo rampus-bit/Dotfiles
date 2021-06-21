@@ -133,7 +133,6 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 # Logout functionality.
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 mode "resize" {
         bindsym j resize shrink width 10 px or 10 ppt
@@ -157,5 +156,5 @@ bindsym $mod+r mode "resize"
 
 # Autostart
 exec_always $HOME/.config/i3/autostart.sh
-exec_always feh --bg-fill $HOME/Pictures/Wallpapers/Anime/Tokyo-City.jpg
+exec_always feh --bg-fill $HOME/Pictures/Wallpapers/Anime/Hill-Girl.png
 exec_always xrandr --output HDMI-A-0 --rotate right --output HDMI-A-0 --left-of DisplayPort-0
