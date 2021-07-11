@@ -88,7 +88,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # Gaps, and colors.
-client.focused #d4c7ff #d4c7ff  #d4c7ff  #d4c7ff     #d4c7ff
+client.focused #000000 #000000  #000000  #000000     #000000
 
 gaps inner 10
 gaps outer -4
