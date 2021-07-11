@@ -1,4 +1,5 @@
-[Options]
+[options]
+#https://github.com/thestinger/termite/blob/master/config
 allow_bold = true
 audible_bell = false
 browser = xdg-open
@@ -16,12 +17,12 @@ modify_other_keys = false
 mouse_autohide = false
 scroll_on_output = false
 scroll_on_keystroke = true
-scrollback_lines = 15000
+scrollback_lines = 50000
 size_hints = false
 search_wrap = true
 urgent_on_bell = true
 
-[Other Attributes]
+[hints]
 #font = Monospace 12
 #foreground = #dcdccc
 #background = #3f3f3f
@@ -32,19 +33,29 @@ urgent_on_bell = true
 #border_width = 10
 #roundness = 2.0
 
-[Theme]
-#dracula theme adapted by Erik Dubois
+############################################################
+#### You can change the color coding to your liking
+#### There is a folder themes in ~/config/termite/themes
+#### Copy/paste the colors from one of the 79+ templates to this one
+#### A backup of the original config termite is present
+############################################################
+#### Use websites to make the terminal your own
+#### https://terminal.sexy
+#### https://critical.ch/xterm/
+############################################################
+
+[colors]
+# ArcoLinux Default Theme
 background = rgba(40, 42, 54, 0.8)
 
 # special
 foreground      = #f8f8f2
 foreground_bold = #f8f8f2
 cursor          = #f8f8f2
-#background     = #282a36
 
 # black
 color0  = #000000
-color8  = #4d4d4d
+color8  = #79A9FF
 
 # red
 color1  = #ff5555
@@ -59,8 +70,8 @@ color3  = #f1fa8c
 color11 = #f4f99d
 
 # blue
-color4  = #bd93f9
-color12 = #caa9fa
+color4  = #6790EB
+color12 = #79A9FF
 
 # magenta
 color5  = #ff79c6
