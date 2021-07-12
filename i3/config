@@ -93,7 +93,7 @@ client.focused #000000 #000000  #000000  #000000     #000000
 gaps inner 10
 gaps outer -4
 
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 0
 new_window 1pixel
 
 # Workspaces & Manipulation
