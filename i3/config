@@ -156,5 +156,5 @@ bindsym $mod+r mode "resize"
 
 # Autostart
 exec_always $HOME/.config/i3/autostart.sh
-exec_always feh --bg-fill $HOME/Pictures/Wallpapers/Anime/Hill-Girl.png
+exec_always feh --bg-fill $HOME/Pictures/Wallpapers/Mono/mono-nasa.png
 exec_always xrandr --output HDMI-A-0 --rotate right --output HDMI-A-0 --left-of DisplayPort-0
