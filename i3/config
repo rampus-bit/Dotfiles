@@ -1,44 +1,27 @@
-# i3 config file (v4)
-#
-# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+#  ____                                       _ _____
+# |  _ \ __ _ _ __ ___  _ __  _   _ ___      (_)___ /
+# | |_) / _` | '_ ` _ \| '_ \| | | / __|_____| | |_ \
+# |  _ < (_| | | | | | | |_) | |_| \__ \_____| |___) |
+# |_| \_\__,_|_| |_| |_| .__/ \__,_|___/     |_|____/
+#                      |_|
 
 set $mod Mod1
 
 font pango:monospace 8
 
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
-
-# The combination of xss-lock, nm-applet and pactl is a popular choice, so
-# they are included here as an example. Modify as you see fit.
-
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
-# Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # General Bindings:
 bindsym $mod+Return exec kitty
-
 bindsym $mod+Shift+Return exec nautilus
-
 bindsym $mod+Shift+q kill
 
-exec_always --no-startup-id $HOME/.config/polybar/forest/launch.sh
 
 bindsym $mod+Shift+d exec --no-startup-id rofi -show run
-# A more modern dmenu replacement is rofi:
-# bindcode $mod+40 exec "rofi -modi drun,run -show drun"
-# There also is i3-dmenu-desktop which only displays applications shipping a
-# .desktop file. It is a wrapper around dmenu, so you need that installed.
-# bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
 # change focus
 bindsym $mod+j focus left
@@ -63,12 +46,6 @@ bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
-
-# split in horizontal orientation
-bindsym $mod+h split h
-
-# split in vertical orientation
-bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -156,5 +133,6 @@ bindsym $mod+r mode "resize"
 
 # Autostart
 exec_always $HOME/.config/i3/autostart.sh
+exec_always --no-startup-id $HOME/.config/polybar/forest/launch.sh
 exec_always feh --bg-fill $HOME/Pictures/Wallpapers/Mono/mono-nasa.png
 exec_always xrandr --output HDMI-A-0 --rotate right --output HDMI-A-0 --left-of DisplayPort-0
