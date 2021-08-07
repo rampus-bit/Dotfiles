@@ -5,7 +5,7 @@ WM=$DESKTOP_SESSION
 function run {
 	if ! pgrep $1 ;
 	then
-		$@&
+			$@&
 	fi
 }
 
