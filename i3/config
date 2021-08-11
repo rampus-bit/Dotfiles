@@ -6,20 +6,13 @@
 #                      |_|
 
 set $mod Mod1
-
 font pango:monospace 8
-
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-
-exec --no-startup-id nm-applet
-
 floating_modifier $mod
 
 # General Bindings:
 bindsym $mod+Return exec kitty
 bindsym $mod+Shift+Return exec nautilus
 bindsym $mod+Shift+q kill
-
 
 bindsym $mod+Shift+d exec --no-startup-id rofi -show run
 
@@ -136,3 +129,5 @@ exec_always $HOME/.config/i3/autostart.sh
 exec_always --no-startup-id $HOME/.config/polybar/forest/launch.sh
 exec_always feh --bg-fill $HOME/Pictures/Wallpapers/Mono/mono-nasa.png
 exec_always xrandr --output HDMI-A-0 --rotate right --output HDMI-A-0 --left-of DisplayPort-0
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id nm-applet
