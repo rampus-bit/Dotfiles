@@ -20,9 +20,10 @@ alias l.="ls -A | egrep '^\.'"
 alias rc="nvim .config/zsh/.zshrc"
 alias v='nvim'
 
-HISTFILE=~/.zsh_hist
+# History Settings
+HISTFILE=~/.config/zsh/.zsh_hist
 HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory
 
-./geode.sh
+~/geode/geode.sh
