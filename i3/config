@@ -11,9 +11,10 @@ floating_modifier $mod
 
 # General Bindings:
 bindsym $mod+Return exec kitty
-bindsym $mod+Shift+Return exec nautilus
+bindsym $mod+Shift+Return exec thunar
 bindsym $mod+Shift+q kill
 
+bindsym $mod+x exec arcolinux-logout
 bindsym $mod+Shift+d exec --no-startup-id rofi -show run
 
 # change focus
@@ -122,12 +123,30 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 
+bar {
+		position top
+
+        colors {
+        background #2f343f
+        statusline #2f343f
+        separator #4b5262
+
+        # colour of border, background, and text
+        focused_workspace       #2f343f #bf616a #d8dee8
+        active_workspace        #2f343f #2f343f #d8dee8
+        inactive_workspace      #2f343f #2f343f #d8dee8
+        urgent_workspacei       #2f343f #ebcb8b #2f343f
+    }
+        status_command i3status
+}
+
+
 bindsym $mod+r mode "resize"
 
 # Autostart
 exec_always $HOME/.config/i3/autostart.sh
-exec_always --no-startup-id $HOME/.config/polybar/forest/launch.sh
-exec_always feh --bg-fill $HOME/Pictures/Wallpapers/Mono/mono-nasa.png
+exec_always $HOME/.config/i3/start-conky-i3statusbar.sh
+exec_always feh --bg-fill $HOME/Pictures/walls/Mono/mono-nasa.png
 exec_always xrandr --output HDMI-A-0 --rotate right --output HDMI-A-0 --left-of DisplayPort-0
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
