@@ -146,7 +146,7 @@ bindsym $mod+r mode "resize"
 # Autostart
 exec_always $HOME/.config/i3/autostart.sh
 exec_always $HOME/.config/i3/start-conky-i3statusbar.sh
-exec_always feh --bg-fill $HOME/Pictures/walls/Anime/Arctic.png
-exec_always xrandr --output HDMI-A-0 --rotate right --output HDMI-A-0 --left-of DisplayPort-0
+exec_always feh --bg-fill $HOME/Pictures/walls/Personal/Astro.jpg
+exec_always xrandr --output HDMI-A-0 --left-of DisplayPort-0
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
