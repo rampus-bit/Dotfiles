@@ -3,16 +3,16 @@
  * User: Alden Garcia / Rampus-Bit
  */
 
-@import "~/.config/rofi/styles/old-colors.rasi"
+@import "~/.config/rofi/styles/gruv-colors.rasi"
 
 window {
-    anchor:     north;
-    location:   north;
-    width:      44%;
-    border:     1;
-    padding:    14px;
-    children:   [ horibox ];
-    border-color: @text-color;
+    location: northwest;
+	border: 0;
+	width: 34%;
+	height: 17px;
+	children: [ horibox ];
+	x-offset: 100px;
+	y-offset: 1px;
 }
 
 prompt {
@@ -39,6 +39,5 @@ element {
     padding: 0px 2px;
 }
 element selected {
-    background-color: @text-color;
-    text-color:       @background-color;
+    background-color: @highlighted-color;
 }

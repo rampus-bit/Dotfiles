@@ -1,0 +1,6 @@
+* {
+    text-color: #C4C7C5;
+	background-color: #161a22;
+	font: "Ubuntu Mono 12";
+	highlighted-color: #C4C7C5;
+}

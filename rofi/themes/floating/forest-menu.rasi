@@ -3,7 +3,7 @@
  * User: Alden Garcia / Rampus-Bit
  */
 
-@import "styles/forest-colors.rasi"
+@import "~/.config/rofi/styles/forest-colors.rasi"
 
 window {
     background-color: @background;
