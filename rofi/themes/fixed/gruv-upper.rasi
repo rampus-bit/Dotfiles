@@ -11,7 +11,7 @@ window {
 	width: 34%;
 	height: 17px;
 	children: [ horibox ];
-	x-offset: 100px;
+	x-offset: 70px;
 	y-offset: 1px;
 }
 
